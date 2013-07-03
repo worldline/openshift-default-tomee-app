@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="db/web" type="javax.sql.DataSource">
+    UserName = sa
+    Password =
+    JdbcUrl = jdbc:hsqldb:mem:hsqldb
+    JdbcDriver = org.hsqldb.jdbcDriver
+  </Resource>
+</resources>
+
+<!--
+
+<resources>
+  <Resource id="db/web" type="javax.sql.DataSource">
+    UserName = integ
+    Password = integ
+    JdbcUrl = jdbc:mysql://localhost:3306/paas
+    JdbcDriver = com.mysql.jdbc.Driver
+  </Resource>
+</resources>
+
+<resources>
+  <Resource id="db/web" type="javax.sql.DataSource">
+    UserName = ${OPENSHIFT_MYSQL_DB_USERNAME}
+    Password = ${OPENSHIFT_MYSQL_DB_PASSWORD}
+    JdbcUrl = jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}
+    JdbcDriver = com.mysql.jdbc.Driver
+  </Resource>
+</resources>
+
+
+Added mysql-5.1 to application thetomee
+
+MySQL 5.1 database added.  Please make note of these credentials:
+
+       Root User: admin9wPCdf8
+   Root Password: Xc2ljM3Evyec
+   Database Name: thetomee
+
+Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
+
+You can manage your new MySQL database by also embedding phpmyadmin-3.4.
+The phpmyadmin username and password will be the same as the MySQL credentials above.
+-->

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:fmt="http://java.sun.com/jstl/fmt"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+  <title>Blog</title>
+  <style>
+    html {
+    background: black;
+    }
+    body {
+    background: #333;
+    background: -webkit-linear-gradient(top, black, #666);
+    background: -o-linear-gradient(top, black, #666);
+    background: -moz-linear-gradient(top, black, #666);
+    background: linear-gradient(top, black, #666);
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,"Liberation Sans",Arial,sans-serif;
+    width: 40em;
+    margin: 0 auto;
+    padding: 3em;
+    }
+    a {
+    color: white;
+    }
+
+    h1 {
+    text-transform: capitalize;
+    -moz-text-shadow: -1px -1px 0 black;
+    -webkit-text-shadow: 2px 2px 2px black;
+    text-shadow: -1px -1px 0 black;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+    background: #CC0000;
+    width: 22.5em;
+    margin: 1em -2em;
+    padding: .3em 0 .3em 1.5em;
+    position: relative;
+    }
+    h1:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border: .5em solid #91010B;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    z-index: -1000;
+    }
+    h1:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: .5em solid #91010B;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    position: absolute;
+    bottom: -1em;
+    right: 0;
+    z-index: -1000;
+    }
+    h2 {
+    margin: 2em 0 .5em;
+    border-bottom: 1px solid #999;
+    }
+
+    pre {
+    background: black;
+    padding: 1em 0 0;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    color: #9cf;
+    }
+
+    ul {
+    margin: 0;
+    padding: 0;
+    }
+    li {
+    list-style-type: none;
+    padding: .5em 0;
+    }
+
+    .brand {
+    display: block;
+    text-decoration: none;
+    }
+    .brand .brand-image {
+    float: left;
+    border: none;
+    }
+    .brand .brand-text {
+    float: left;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 4px 0;
+    color: white;
+    text-transform: uppercase;
+    }
+    .brand:hover,
+    .brand:active {
+    text-decoration: underline;
+    }
+
+    .brand:before,
+    .brand:after {
+    content: ' ';
+    display: table;
+    }
+    .brand:after {
+    clear: both;
+    }
+  </style>
+</h:head>
+<h:body>
+  <h1>Hello world as a service</h1>
+
+  <p>This is a very small example using JSF, EJB, CDI, JPA</p>
+
+  <h:form>
+    <p>
+      <h:outputText value="Author:" class="brand"/>
+      <h:inputText value="#{blog.post.author}"></h:inputText>
+    </p>
+    <p>
+      <br></br>
+      <h:outputText value="Post:" class="brand"/>
+      <h:inputTextarea value="#{blog.post.body}"></h:inputTextarea>
+    </p>
+    <p>
+      <h:commandButton value="Add my post" action="#{blog.add}"></h:commandButton>
+    </p>
+  </h:form>
+
+  <h1 id="test">Blog</h1>
+  <c:choose>
+    <c:when test="${fn:length(blog.posts) > 0}">
+      <div id="mytable">
+        <c:forEach var="item" items="#{blog.posts}">
+          <h4>
+            <span>Post entry at
+              <h:outputText value="#{item.createdAt}">
+                <f:convertDateTime pattern="dd/MM/yyyy - HH:mm"/>
+              </h:outputText> from
+              <h:outputText value="#{item.author}" class="brand"/>
+            </span>
+          </h4>
+          <div>
+            <h:outputText value="Content:"/>
+            <h:outputText value="#{item.body}"/>
+          </div>
+          <br></br>
+        </c:forEach>
+      </div>
+    </c:when>
+    <c:otherwise>
+      <h3>No post in DB</h3>
+    </c:otherwise>
+  </c:choose>
+</h:body>
+</html>
